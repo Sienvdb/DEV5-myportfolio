@@ -25,10 +25,19 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
   //loader
   const loader = new THREE.TextureLoader();
 
+  //globe sky
+  const skyGeometry = new THREE.SphereGeometry(500, 32, 32);
+  const skyMaterial = new THREE.MeshBasicMaterial({
+    map: loader.load('./textures/sky.jpg'),
+    side: THREE.BackSide
+  });
+  const sky = new THREE.Mesh(skyGeometry, skyMaterial);
+  scene.add(sky);
+
   //globe with grass texture
   const globe = new THREE.SphereGeometry(20, 32, 32);
   const globeMaterial = new THREE.MeshLambertMaterial( { color: 0x00ff00 } );
-  globeMaterial.map = loader.load('./textures/grass2.jpg');
+  globeMaterial.map = loader.load('./textures/grass3.jpg');
   const cube = new THREE.Mesh( globe, globeMaterial );
   cube.position.y = -20.5;
   scene.add( cube );
