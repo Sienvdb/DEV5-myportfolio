@@ -12,14 +12,22 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
   //orbit controls
   const controls = new OrbitControls(camera, renderer.domElement);
-  controls.enableDamping = true;
+
+  //ambient light
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+  scene.add(ambientLight);
+
+  //directional light
+  const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+  directionalLight.position.set(0, 1, 0);
+  scene.add(directionalLight);
 
   //loader
   const loader = new THREE.TextureLoader();
 
   //globe with grass texture
   const globe = new THREE.SphereGeometry(20, 32, 32);
-  const globeMaterial = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+  const globeMaterial = new THREE.MeshLambertMaterial( { color: 0x00ff00 } );
   globeMaterial.map = loader.load('./textures/grass2.jpg');
   const cube = new THREE.Mesh( globe, globeMaterial );
   cube.position.y = -20.5;
@@ -27,13 +35,20 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
   //house 
   const wallsGeometry = new THREE.BoxGeometry(1, 1, 1);
-  const wallsMaterial = new THREE.MeshBasicMaterial( { color: 0xFFF000 } );
+  const wallsMaterial = new THREE.MeshLambertMaterial( { color: 'white' } );
   wallsMaterial.map = loader.load('./textures/brick.avif');
   const walls = new THREE.Mesh( wallsGeometry, wallsMaterial );
   scene.add( walls );
 
+  const wallsInsideGeometry = new THREE.BoxGeometry(1, 1, 1);
+  const wallsInsideMaterial = new THREE.MeshLambertMaterial( { color: 'white' } );
+  wallsInsideMaterial.map = loader.load('./textures/brick.avif');
+  wallsInsideMaterial.side = THREE.BackSide;
+  const wallsInside = new THREE.Mesh( wallsInsideGeometry, wallsInsideMaterial );
+  scene.add( wallsInside );
+
   const roofGeometry = new THREE.ConeGeometry(0.75, 0.75, 4);
-  const roofMaterial = new THREE.MeshBasicMaterial( { color: 'grey' } );
+  const roofMaterial = new THREE.MeshLambertMaterial( { color: 'white' } );
   roofMaterial.map = loader.load('./textures/roof.avif');
   const roof = new THREE.Mesh( roofGeometry, roofMaterial );
   roof.position.y = 0.85;
@@ -42,10 +57,11 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
   scene.add( roof );
 
   const doorGeometry = new THREE.BoxGeometry(0.2, 0.4, 0.05);
-  const doorMaterial = new THREE.MeshBasicMaterial( { color: 'blue' } );
+  const doorMaterial = new THREE.MeshLambertMaterial( { color: 'blue' } );
   const door = new THREE.Mesh( doorGeometry, doorMaterial );
   door.position.y = -0.3;
   door.position.z = 0.5;
+  door.position.x = 0.3;
   scene.add( door );
 
 
