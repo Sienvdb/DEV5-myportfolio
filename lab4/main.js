@@ -18,13 +18,12 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
   const loader = new THREE.TextureLoader();
 
   //globe with grass texture
-  /*
-  const globe = new THREE.SphereGeometry(1, 32, 32);
+  const globe = new THREE.SphereGeometry(20, 32, 32);
   const globeMaterial = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
   globeMaterial.map = loader.load('./textures/grass2.jpg');
   const cube = new THREE.Mesh( globe, globeMaterial );
+  cube.position.y = -20.5;
   scene.add( cube );
-  */
 
   //house 
   const wallsGeometry = new THREE.BoxGeometry(1, 1, 1);
