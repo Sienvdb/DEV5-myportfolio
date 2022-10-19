@@ -13,6 +13,7 @@ const getAll = (req, res) => {
         }
         let response = {
             status: "success",
+            message: "GETTING messages",
             data: messages
         }
         res.json(response);
