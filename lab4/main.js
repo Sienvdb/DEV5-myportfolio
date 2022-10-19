@@ -40,6 +40,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
   globeMaterial.map = loader.load('./textures/grass3.jpg');
   const cube = new THREE.Mesh( globe, globeMaterial );
   cube.position.y = -20.5;
+  cube.rotateZ( Math.PI * 0.5 )
   scene.add( cube );
 
   //house 
