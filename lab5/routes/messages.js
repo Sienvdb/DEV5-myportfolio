@@ -16,6 +16,9 @@ router.get('/messages/:id', MessageController.getMessageById);
 /* POST create a new message. */
 router.post('/messages', MessageController.createMessage);
 
+/* PUT change message. */
+router.put('/messages/:id', MessageController.changeMessage);
+
 
 
 module.exports = router;

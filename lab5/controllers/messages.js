@@ -31,7 +31,6 @@ const getMessageById = (req, res) => {
                 }
                 res.json(response);
             }
-            console.log("ok");
             let response = {
                 status: "success",
                 message: "GETTING messages " + req.params.id,
@@ -39,7 +38,7 @@ const getMessageById = (req, res) => {
             }
             res.json(response);
             }
-            )};
+    )};
 
 const createMessage = (req, res) => {
     let sender = req.body.user;
@@ -66,6 +65,28 @@ const createMessage = (req, res) => {
             });
         };
 
+const changeMessage = (req, res) => {
+    const messageId = req.params.id;
+    Message.find({_id: messageId}, (err, message) => {
+        if (err) {
+            console.log(err)
+            let response = {
+                status: "error",
+                message: "This message isn't found so can't be updated"
+                }
+                res.json(response);
+            }
+            console.log("ok");
+            let response = {
+                status: "success",
+                message: "UPDATING a message with id " + req.params.id,
+                data: message
+            }
+            res.json(response);
+            }
+    )};
+
 module.exports.getAll = getAll;
 module.exports.getMessageById = getMessageById;
 module.exports.createMessage = createMessage;
+module.exports.changeMessage = changeMessage;
