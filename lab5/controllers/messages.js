@@ -21,19 +21,21 @@ const getAll = (req, res) => {
 };
 
 const getMessageById = (req, res) => {
-    message.findById(req.params.id, (err, message) => {
+    const messageId = req.params.id;
+    Message.find({_id: messageId}, (err, message) => {
         if (err) {
             console.log(err)
             let response = {
                 status: "error",
-                message: "Error getting this message"
+                message: "This message isn't found"
                 }
                 res.json(response);
             }
+            console.log("ok");
             let response = {
                 status: "success",
-                message: "GETTING messages" + req.params.id,
-                data: messages.find(message => message.id === req.params.id)
+                message: "GETTING messages " + req.params.id,
+                data: message
             }
             res.json(response);
             }
