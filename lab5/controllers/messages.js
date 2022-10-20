@@ -86,7 +86,30 @@ const changeMessage = (req, res) => {
             }
     )};
 
+const deleteMessage = (req, res) => {
+    const messageId = req.params.id;
+    Message.remove({_id: messageId}, (err, message) => {
+        if (err) {
+            console.log(err)
+            let response = {
+                status: "error",
+                message: "This message isn't found so can't be removed"
+                }
+                res.json(response);
+            }
+            console.log("ok");
+            let response = {
+                status: "success",
+                message: "REMOVING a message with id " + req.params.id,
+                
+            }
+            res.json(response);
+            }
+    )};
+
+
 module.exports.getAll = getAll;
 module.exports.getMessageById = getMessageById;
 module.exports.createMessage = createMessage;
 module.exports.changeMessage = changeMessage;
+module.exports.deleteMessage = deleteMessage;

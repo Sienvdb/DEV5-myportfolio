@@ -19,6 +19,8 @@ router.post('/messages', MessageController.createMessage);
 /* PUT change message. */
 router.put('/messages/:id', MessageController.changeMessage);
 
+/* DELETE message by id */
+router.delete('/messages/:id', MessageController.deleteMessage);
 
 
 module.exports = router;
