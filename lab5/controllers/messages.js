@@ -41,7 +41,7 @@ const getMessageById = (req, res) => {
     )};
 
 const createMessage = (req, res) => {
-    let sender = req.body.user;
+    let sender = req.body.sender;
     let message = req.body.message;
 
     let newMessage = new Message(req.body);
@@ -107,9 +107,29 @@ const deleteMessage = (req, res) => {
             }
     )};
 
+const getMessageBySender = (req, res) => {
+    const sender = req.params.sender;
+    Message.find({sender: sender}, (err, message) => {
+        if (err) {
+            console.log(err)
+            let response = {
+                status: "error",
+                message: "This message isn't found"
+                }
+                res.json(response);
+            }
+            let response = {
+                status: "success",
+                message: "GETTING messages " + sender,
+                data: message
+            }
+            res.json(response);
+            }
+    )};
 
 module.exports.getAll = getAll;
 module.exports.getMessageById = getMessageById;
 module.exports.createMessage = createMessage;
 module.exports.changeMessage = changeMessage;
 module.exports.deleteMessage = deleteMessage;
+module.exports.getMessageBySender = getMessageBySender;

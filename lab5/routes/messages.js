@@ -13,6 +13,9 @@ router.get('/messages', MessageController.getAll);
 /* GET messages by id */
 router.get('/messages/:id', MessageController.getMessageById);
 
+/* GET messages by sender */
+router.get('/messages/sender/:sender', MessageController.getMessageBySender);
+
 /* POST create a new message. */
 router.post('/messages', MessageController.createMessage);
 
