@@ -35,11 +35,11 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
   scene.add(sky);
 
   //globe with grass texture
-  const globe = new THREE.SphereGeometry(20, 32, 32);
+  const globe = new THREE.SphereGeometry(1, 1, 36);
   const globeMaterial = new THREE.MeshLambertMaterial( { color: 0x00ff00 } );
   globeMaterial.map = loader.load('./textures/grass3.jpg');
   const cube = new THREE.Mesh( globe, globeMaterial );
-  cube.position.y = -20.5;
+  cube.position.y = -0.95;
   cube.rotateZ( Math.PI * 0.5 )
   scene.add( cube );
 
@@ -92,14 +92,59 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
   scene.add( mailbox );
 
   //load GLTF (butterfly)
-  let butterfly;
+/*
   const gltfLoader = new GLTFLoader();
-  gltfLoader.load('./models/scene.gltf', (gltf) => {
-    console.log(gltf);
-    gltf.scene.scale.set(0.001, 0.001, 0.001); 
+  let butterfly;
+  //bumb maps voor 3D effects
+  const addButterfly = (gltf,x,y,z) => {
+    console.log(butterfly.scene)
     butterfly = gltf.scene;
+    butterfly.scale.set(0.1,0.1,0.1);
     scene.add(gltf.scene);
-  });
+  }
+  const butterflyTexture = gltfLoader.load('./models/scene.gltf', addButterfly);
+*/
+//load GLTF (robot)
+const butterflyGLTF = '/models/scene.gltf'
+const addButterfly = (x,y,z,a,b,c) =>{
+
+let robot;
+const gltfLoader = new GLTFLoader();
+gltfLoader.load(butterflyGLTF, (gltf) => {
+
+  console.log(gltf);
+  robot = gltf.scene;
+  robot.scale.set(0.05,0.05,0.05);
+  robot.position.set(x,y,z);
+  robot.rotation.set(a,b,0);
+
+  scene.add(gltf.scene);
+  
+});
+}
+
+  for(let i = 0; i < 50; i++) {
+    //random sign
+    console.log('ok')
+    let sign = Math.random() < 0.5 ? -1 : 1;
+    const x = Math.random() * 30 * sign;
+  
+    sign = Math.random() < 0.5 ? -1 : 1;
+    const y = Math.random() * 30 * sign;
+  
+    sign = Math.random() < 0.5 ? -1 : 1;
+    const z = Math.random() * 30 * sign;
+
+    sign = Math.random() < 0.5 ? -0.5 : 0.5;
+    const a = Math.random() * 30 * sign;
+  
+    sign = Math.random() < 0.5 ? -0.5 : 0.5;
+    const b = Math.random() * 30 * sign;
+  
+    sign = Math.random() < 0.5 ? -0.5 : 0.5;
+    const c = Math.random() * 30 * sign;
+    addButterfly(x,y,z,a,b,c);
+  } 
   camera.position.z = 5;
 
 
