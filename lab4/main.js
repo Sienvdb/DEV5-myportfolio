@@ -74,6 +74,24 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
   door.position.x = 0.3;
   scene.add( door );
 
+  const _windowGeometry = new THREE.BoxGeometry(0.5, 0.3, 0.05);
+  const _windowMaterial = new THREE.MeshLambertMaterial( { color: '#0077C3' } );
+  const _window = new THREE.Mesh( _windowGeometry, _windowMaterial );
+  _window.position.y = 0.2;
+  _window.position.z = 0.5;
+  _window.position.x = -0.1;
+  scene.add( _window );
+
+  const mailboxGeometry = new THREE.BoxGeometry(0.15, 0.05, 0.05);
+  const mailboxMaterial = new THREE.MeshLambertMaterial( { color: 'white' } );
+  mailboxMaterial.map = loader.load('./photos/name.png');
+  const mailbox = new THREE.Mesh( mailboxGeometry, mailboxMaterial );
+  mailbox.position.y = -0.35;
+  mailbox.position.z = 0.5;
+  mailbox.position.x = 0.3;
+  scene.add( mailbox );
+
+  
 
   camera.position.z = 5;
 
