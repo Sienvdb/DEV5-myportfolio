@@ -91,8 +91,15 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
   mailbox.position.x = 0.3;
   scene.add( mailbox );
 
-  
-
+  //load GLTF (butterfly)
+  let butterfly;
+  const gltfLoader = new GLTFLoader();
+  gltfLoader.load('./models/scene.gltf', (gltf) => {
+    console.log(gltf);
+    gltf.scene.scale.set(0.001, 0.001, 0.001); 
+    butterfly = gltf.scene;
+    scene.add(gltf.scene);
+  });
   camera.position.z = 5;
 
 
