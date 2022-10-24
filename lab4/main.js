@@ -35,11 +35,11 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
   scene.add(sky);
 
   //globe with grass texture
-  const globe = new THREE.SphereGeometry(1, 1, 36);
+  const globe = new THREE.SphereGeometry(2, 0.1, 36);
   const globeMaterial = new THREE.MeshLambertMaterial( { color: 0x00ff00 } );
   globeMaterial.map = loader.load('./textures/grass3.jpg');
   const cube = new THREE.Mesh( globe, globeMaterial );
-  cube.position.y = -0.95;
+  cube.position.y = -1.49;
   cube.rotateZ( Math.PI * 0.5 )
   scene.add( cube );
 
@@ -82,7 +82,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
   _window.position.x = -0.1;
   scene.add( _window );
 
-  const mailboxGeometry = new THREE.BoxGeometry(0.15, 0.05, 0.05);
+  const mailboxGeometry = new THREE.BoxGeometry(0.15, 0.05, 0.06);
   const mailboxMaterial = new THREE.MeshLambertMaterial( { color: 'white' } );
   mailboxMaterial.map = loader.load('./photos/name.png');
   const mailbox = new THREE.Mesh( mailboxGeometry, mailboxMaterial );
@@ -105,18 +105,19 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
   const butterflyTexture = gltfLoader.load('./models/scene.gltf', addButterfly);
 */
 //load GLTF (robot)
+let butterfly;
+
 const butterflyGLTF = '/models/scene.gltf'
 const addButterfly = (x,y,z,a,b,c) =>{
 
-let robot;
 const gltfLoader = new GLTFLoader();
 gltfLoader.load(butterflyGLTF, (gltf) => {
 
   console.log(gltf);
-  robot = gltf.scene;
-  robot.scale.set(0.05,0.05,0.05);
-  robot.position.set(x,y,z);
-  robot.rotation.set(a,b,0);
+  butterfly = gltf.scene;
+  butterfly.scale.set(0.05,0.05,0.05);
+  butterfly.position.set(x,y,z);
+  butterfly.rotation.set(a,b,0);
 
   scene.add(gltf.scene);
   
@@ -151,6 +152,12 @@ gltfLoader.load(butterflyGLTF, (gltf) => {
   function animate() {
     requestAnimationFrame( animate );
     renderer.render( scene, camera );
+
+    //camera around globe
+    camera.position.x = Math.sin(Date.now() * 0.0003) * 5;
+    camera.position.z = Math.cos(Date.now() * 0.0003) * 5;
+    camera.lookAt(0,0,0);
+
   };
   
   animate();
