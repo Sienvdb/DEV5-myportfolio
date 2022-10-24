@@ -8,16 +8,15 @@ export default class Card {
   
     markDone(target) {
       // 🔥🔥🔥 TODO 5: mark or unmark (toggle) a bingo card when clicked
-      console.log("Marking card as done");
-      console.log(target);
         target.classList.toggle("bingo__card--done");
     }
   
     render(counter) {
       let card = document.createElement("div");
-      card.dataset.number = counter + 1;
-        card.classList.add("bingo__card");
-        card.innerHTML = `<h2 class="bingo__card-title">${this.title}</h2>`;
+
+      card.classList.add("bingo__card");
+        card.innerHTML = this.title;
+        card.dataset.number = counter + 1;
         document.querySelector(".bingo__board").appendChild(card);
   
       // 🔥🔥🔥 TODO4
