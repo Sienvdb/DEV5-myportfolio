@@ -7,11 +7,10 @@ export default class Card {
     }
   
     markDone(target) {
-      // to mark a card as done, we add a class .bingo__card--done to it
       // 🔥🔥🔥 TODO 5: mark or unmark (toggle) a bingo card when clicked
       console.log("Marking card as done");
       console.log(target);
-      // hint: use class .bingo__card--done
+        target.classList.toggle("bingo__card--done");
     }
   
     render(counter) {
@@ -21,12 +20,7 @@ export default class Card {
         card.innerHTML = `<h2 class="bingo__card-title">${this.title}</h2>`;
         document.querySelector(".bingo__board").appendChild(card);
   
-      // 🔥🔥🔥 TODO4: when we click an item, we want to check for winners and we want to save the selection to storage
-      //card.addEventListener("click", (e) => {
-        // this.markDone(e.target);
-        // call checkWinner() on the Bingo class
-        // try to call the save() method on the Bingo class
-      //});
+      // 🔥🔥🔥 TODO4
       card.addEventListener("click", (e) => {
         this.markDone(e.target);
         Bingo.checkWinner();
