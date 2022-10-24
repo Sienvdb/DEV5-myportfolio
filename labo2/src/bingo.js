@@ -67,36 +67,29 @@ export default class Bingo {
     let cardsWon = [];
     let cards = document.querySelectorAll(".bingo__card--done");
     for (let i = 0; i < cards.length; i++) {
-        //dataset.number is undefined
-        
         cardsWon.push(cards[i].dataset.number);
-        console.log(cards[i].dataset.number)
     }
+
+    localStorage.setItem("cardNumber", JSON.stringify(cardsWon));
 
     // if there are not done cards, remove localstorage
-    if (cards.length === 0) {
+    if (cards.length === 0 || cards.length === 5) {
      localStorage.clear();
+     localStorage.removeItem("cardNumber");
     }
-
-    // save a selection like [1, 7, 8] to localstorage item "bingo"
-    // you might want to check out how JSON.stringify() works
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
-    localStorage.setItem("cardNumber", JSON.stringify(cardsWon));
   }
 
   static load() {
     // 🔥🔥🔥 TODO 8
-    // load the cards that are done from localstorage
-    // this works the other way around of the save function
-    // load the saved string from localstorage and parse it as an array, then loop over it
     console.log("loading bingo selection from localstorage");
 
     // check if localstorage item exists
-    if (localStorage.getItem("bingo")) {
-      // let cardsWon = JSON.parse();
-      // JSON.parse() will convert the string [1, 7, 8] back to an array which you can loop
-      // loop over the numbers 1, 7, 8 and mark those cards as done by adding the right CSS class
-      // .bingo__card--done
+    if (localStorage.getItem("cardNumber")) {
+      let cardsWon = JSON.parse(localStorage.getItem("cardNumber"));
+        for (let i = 0; i < cardsWon.length; i++) {
+            let card = document.querySelector(`[data-number="${cardsWon[i]}"]`);
+            card.classList.add("bingo__card--done");
+        }
     }
   }
 }
