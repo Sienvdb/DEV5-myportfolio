@@ -8,6 +8,7 @@ const messageSchema = new Schema({
 
 });
 
+//anders veranderen naar res.json
 const Message = mongoose.model('message', messageSchema);
 
 module.exports = Message;
