@@ -60,11 +60,30 @@ export default class Weather {
     img.src = icon;
     // append the image to the weather__icon div
     document.querySelector(".weather__icon").appendChild(img);
-    this.getStravaRoute();
+    this.getSuitableDisneyCharacter(temp);
   }
 
-  getStravaRoute(){
-    const url = "https://api.disneyapi.dev/characters";
+  getSuitableDisneyCharacter(temp){
+    var movie;
+    if(temp < 0){
+        movie = "frozen";
+    }
+    else if(temp < 10){
+        movie = "Micky Mouse";
+    }
+    else if(temp < 20){
+        movie = "Mickey Mouse";
+    }
+    else if(temp < 30){
+        movie = "Aladdin";
+    }
+    console.log(temp)
+    this.getDisneyMovie(movie);
+  }
+
+  getDisneyMovie(movie){
+    console.log(movie)
+    const url = "https://api.disneyapi.dev/character?name=" + movie;
     fetch(url)
         .then(response => response.json())
         .then(data => {
