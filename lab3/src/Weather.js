@@ -60,7 +60,16 @@ export default class Weather {
     img.src = icon;
     // append the image to the weather__icon div
     document.querySelector(".weather__icon").appendChild(img);
+    this.getStravaRoute();
+  }
 
+  getStravaRoute(){
+    const url = "https://api.disneyapi.dev/characters";
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        });
   }
 
 }
