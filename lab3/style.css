@@ -1,0 +1,36 @@
+body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+}
+
+.weather__icon{
+    width: 400px;
+    height: 400px;
+    background-color: darkblue;
+    border: 30px solid darkblue;
+    border-bottom-width: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: 400px;
+    background-position: top center;
+}
+
+.weather__summary{
+    padding-top: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: darkblue;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0px;
+    padding-bottom: 0;
+    text-align: center;
+}

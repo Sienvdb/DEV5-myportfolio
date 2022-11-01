@@ -49,18 +49,11 @@ export default class Weather {
   displayWeather(data){
     console.log(data)
     const temp = data.current.temp_c;
-    document.querySelector(".weather__temp").innerHTML = temp + "°C";
 
     const weather = data.current.condition.text;
     document.querySelector(".weather__summary").innerHTML = weather;
 
     const icon = data.current.condition.icon;
-    // create an image element
-    const img = document.createElement("img");
-    // set the src attribute to the icon url
-    img.src = icon;
-    // append the image to the weather__icon div
-    document.querySelector(".weather__icon").appendChild(img);
     this.getSuitableDisneyCharacter(temp, weather);
   }
 
@@ -99,11 +92,10 @@ export default class Weather {
   displayMovie(data){
     const movie = data.films[0];
     //set image in weather__icon
-    const img = document.createElement("img");
-    img.src = data.imageUrl;
-    document.querySelector(".weather__icon").appendChild(img);
+    document.querySelector(".weather__icon").style.backgroundImage = "url(" + data.imageUrl + ")";
+
     //set movie in weather__summary
-    document.querySelector(".weather__summary").innerHTML = "Watch " + movie + " to become one with the weather";
+    document.querySelector(".weather__summary").innerHTML = "Watch " + movie + " to see a movie with the same weather";
 
   }
 
