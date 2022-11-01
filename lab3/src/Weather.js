@@ -90,12 +90,21 @@ export default class Weather {
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            console.log(data.data[0].films[0]);
+            console.log(data.data[0]);
             console.log("Watch " + data.data[0].films[0] + " to become one with the weather");
             this.displayMovie(data.data[0])
         });
   }
 
+  displayMovie(data){
+    const movie = data.films[0];
+    //set image in weather__icon
+    const img = document.createElement("img");
+    img.src = data.imageUrl;
+    document.querySelector(".weather__icon").appendChild(img);
+    //set movie in weather__summary
+    document.querySelector(".weather__summary").innerHTML = "Watch " + movie + " to become one with the weather";
 
+  }
 
 }
