@@ -47,6 +47,7 @@ export default class Weather {
   }
 
   displayWeather(data){
+    console.log(data)
     const temp = data.current.temp_c;
     document.querySelector(".weather__temp").innerHTML = temp + "°C";
 
@@ -60,11 +61,13 @@ export default class Weather {
     img.src = icon;
     // append the image to the weather__icon div
     document.querySelector(".weather__icon").appendChild(img);
-    this.getSuitableDisneyCharacter(temp);
+    this.getSuitableDisneyCharacter(temp, weather);
   }
 
-  getSuitableDisneyCharacter(temp){
+  getSuitableDisneyCharacter(temp, weather){
     var movie;
+    var weather;
+    console.log(weather)
     if(temp < 0){
         movie = "frozen";
     }
@@ -72,10 +75,10 @@ export default class Weather {
         movie = "Micky Mouse";
     }
     else if(temp < 20){
-        movie = "Mickey Mouse";
+        movie = "Queen Arianna";
     }
     else if(temp < 30){
-        movie = "Aladdin";
+        movie = "Moana";
     }
     console.log(temp)
     this.getDisneyMovie(movie);
@@ -87,8 +90,12 @@ export default class Weather {
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            console.log(data.data[0].films[0]);
+            console.log("Watch " + data.data[0].films[0] + " to become one with the weather");
+            this.displayMovie(data.data[0])
         });
   }
+
+
 
 }
