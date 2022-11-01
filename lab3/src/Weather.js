@@ -65,10 +65,10 @@ export default class Weather {
         movie = "frozen";
     }
     else if(temp < 10){
-        movie = "Micky Mouse";
+        movie = "Queen Arianna";
     }
     else if(temp < 20){
-        movie = "Queen Arianna";
+        movie = "Aladdin";
     }
     else if(temp < 30){
         movie = "Moana";
@@ -90,7 +90,7 @@ export default class Weather {
   }
 
   displayMovie(data){
-    const movie = data.films[0];
+    const movie = data.name;
     //set image in weather__icon
     document.querySelector(".weather__icon").style.backgroundImage = "url(" + data.imageUrl + ")";
 
