@@ -51,7 +51,8 @@ export default class Weather {
     const temp = data.current.temp_c;
 
     const weather = data.current.condition.text;
-    document.querySelector(".weather__summary").innerHTML = weather;
+    document.querySelector(".weather__weatherIcon").src = data.current.condition.icon;
+    document.querySelector(".weather__weatherText").innerHTML = temp + "°C"; ;
 
     const icon = data.current.condition.icon;
     this.getSuitableDisneyCharacter(temp, weather);
@@ -95,8 +96,7 @@ export default class Weather {
     document.querySelector(".weather__icon").style.backgroundImage = "url(" + data.imageUrl + ")";
 
     //set movie in weather__summary
-    document.querySelector(".weather__summary").innerHTML = "Watch " + movie + " to see a movie with the same weather";
-
+    document.querySelector(".weather__summary").innerHTML = "Watch " + movie + " to see a movie with the same weather:";
   }
 
 }
