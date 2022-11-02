@@ -7,11 +7,14 @@ export default class Weather {
     //check if timestamp is older than 10 minutes
     if(
         localStorage.getItem("weather") &&
+        localStorage.getItem("movie") &&
         Date.now() - localStorage.getItem("timestamp") < 600000
     ){
         //get weather from local storage
         const weatherData = JSON.parse(localStorage.getItem("weather"));
+        const movieData = JSON.parse(localStorage.getItem("movie"));
         this.displayWeather(weatherData);
+        this.displayMovie(movieData)
         console.log
     }
     else{
@@ -84,8 +87,8 @@ export default class Weather {
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            console.log(data.data[0]);
-            console.log("Watch " + data.data[0].films[0] + " to become one with the weather");
+            //save to local storage
+            localStorage.setItem("movie", JSON.stringify(data));
             this.displayMovie(data.data[0])
         });
   }
