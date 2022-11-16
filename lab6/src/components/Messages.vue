@@ -17,7 +17,24 @@
 
 <template>
   <div>
-    Messages.vue
+    <!-- title is variabele dat je in script kunt declareren -->
+    <h1>{{ title }}</h1>
+    <ul>
+        <!-- v-for: loop over een array in html -->
+        <li v-for="video in videos">
+            {{ video }}
+        </li>
+    </ul>
+
+    <!-- TWO WAY BINDING: docs: reactivity fundamentals-->
+    <input type="text" v-model="title">
+
+    <!-- @click = input + hi:title terug leegmaken en veranderen in hallo-->
+    <!--<button @click="title = 'hello'">Change title</button> -->
+
+    <!-- als geklikt dan functie addVideo aanroepen -->
+    <button @click="addVideo">Change title</button>
+    
   </div>
 </template>
 
