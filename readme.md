@@ -14,3 +14,7 @@
 
 ## lab5
 [CODE LAB5](https://github.com/Sienvdb/DEV5-myportfolio/tree/main/lab5) </br>
+
+## lab6
+[CODE LAB6](https://github.com/Sienvdb/DEV5-myportfolio/tree/main/lab6) </br>
+[Lab6 LAB6](https://labo6-tiktok-vue.vercel.app/)
