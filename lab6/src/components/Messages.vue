@@ -21,6 +21,31 @@
             });
     });
 
+    
+    const addComment = () => {
+        let api_url = "https://lab5-p379.onrender.com/api/v1/messages/";
+        let comment = document.querySelector(".input__text").value;
+        let data = {
+            "id": comments.comments.length + 1,
+            "user": "Sien",
+            "text": comment,
+        };
+        fetch(api_url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        })
+            .then(response => response.json())
+            .then(data => {
+              console.log(data);
+              comments.comments.push(data);
+              document.querySelector(".input__text").value = "";
+            });
+
+    };
+
 
 </script>
 
