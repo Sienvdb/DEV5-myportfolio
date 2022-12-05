@@ -29,21 +29,12 @@
 
 <template>
   <div>
-    <!-- title is variabele dat je in script kunt declareren -->
-    <h1>Messages</h1>
     <ul>
-        <!-- v-for: loop over een array in html -->
-
-    </ul>
-
-    <!-- TWO WAY BINDING: docs: reactivity fundamentals-->
-    <input type="text" v-model="title">
-
-    <!-- @click = input + hi:title terug leegmaken en veranderen in hallo-->
-    <!--<button @click="title = 'hello'">Change title</button> -->
-
-    <!-- als geklikt dan functie addVideo aanroepen -->
-    <button @click="addVideo">Change title</button>
+          <li v-for="comments in comments.comments" :key="comments.id" class="comments">
+              <p class="comment__username">{{ comments.user }}</p>
+              <p class="comment__text">{{ comments.text }}</p>
+          </li>
+      </ul>
     
   </div>
 </template>
