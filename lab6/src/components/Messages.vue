@@ -28,7 +28,7 @@
 </script>
 
 <template>
-  <div>
+  <div class="videoComments">
     <ul>
           <li v-for="comments in comments.comments" :key="comments.id" class="comments">
               <p class="comment__username">{{ comments.user }}</p>
@@ -41,4 +41,29 @@
 
 <!-- scoped: enkel in dit bestand/ component van toepassing-->
 <style scoped>
+    .videoComments{
+        padding: 0 1rem;
+    }
+    ul{
+      padding-left: 0em;
+      margin-left: 0em;
+    }
+    li{
+        list-style: none;
+    }
+    .comments{
+        padding: 1em;
+        margin: 0.5em;
+        border: 1px solid #ccc;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .comment__username{
+      margin: 0;
+        font-weight: bold;
+    }
+
+    .comment__text{
+      margin: 0;
+    }
 </style>
