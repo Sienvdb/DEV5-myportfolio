@@ -57,13 +57,15 @@
         <input class="input__text" type="text" placeholder="Type here">
         <button class="button" @click ="addComment" type="submit">SEND</button>
       </div>
-    <ul>
+    <div class=".comments__list">
+      <ul>
           <li v-for="comments in comments.comments" :key="comments.id" class="comments">
               <p class="comment__username">{{ comments.user }}</p>
               <p class="comment__text">{{ comments.text }}</p>
           </li>
       </ul>
-    
+
+    </div>    
   </div>
 </template>
 
@@ -97,6 +99,10 @@
         margin: 0.5em;
         border: 1px solid #ccc;
         font-family: 'Roboto', sans-serif;
+    }
+
+    .comments__list{
+      overflow-y: hidden;
     }
 
     .comment__username{
