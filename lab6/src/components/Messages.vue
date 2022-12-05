@@ -21,14 +21,16 @@
             });
     });
 
-    const addVideo = () => {
-        videos.push(title.value);
-        console.log("ben ik hier?")
-    }
+
 </script>
 
 <template>
   <div class="videoComments">
+    <h3>Comments</h3>
+        <div>
+        <input class="input__text" type="text" placeholder="Type here">
+        <button class="button" @click ="addComment" type="submit">SEND</button>
+      </div>
     <ul>
           <li v-for="comments in comments.comments" :key="comments.id" class="comments">
               <p class="comment__username">{{ comments.user }}</p>
