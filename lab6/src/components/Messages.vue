@@ -43,6 +43,7 @@
               comments.comments.push(data);
               document.querySelector(".input__text").value = "";
             });
+            comments.comments.unshift(data);
 
     };
 
