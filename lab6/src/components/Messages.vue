@@ -43,6 +43,19 @@
 
 <!-- scoped: enkel in dit bestand/ component van toepassing-->
 <style scoped>
+  .button{
+    background-color: #39BC62;
+    padding: 0.5em;
+    border: none;
+    border-radius: 0.21em;
+  }
+.input__text{
+      width: 80%;
+        padding: 0.5em;
+        margin: 0.5em;
+        border: 1px solid #ccc;
+        font-family: 'Roboto', sans-serif;
+    }
     .videoComments{
         padding: 0 1rem;
     }
