@@ -8,19 +8,17 @@
     import { onMounted } from 'vue'
 
     //ref voor o.a. strings, reactive voor o.a. arrays
-    let title = ref("hellow");
-    let comments = reactive({comment: []});
 
+    let comments = reactive({ comments: [] });
     onMounted(() => {
-    const api_url = "https://lab5-p379.onrender.com/api/v1/messages/";
-    fetch(api_url)
-        .then(res => res.json())
-        .then(data => {
-          console.log(data);
-          console.log(comments)
-          comments.comment = data[0];
-          //messageText.value = data.messages[0].text;
-        })
+      //make connection with messages api Ismaïl 
+        let api_url = "https://lab5-p379.onrender.com/api/v1/messages/";
+        fetch(api_url)
+            .then(response => response.json())
+            .then(data => {
+                comments.comments = data;
+                comments.comments.reverse()
+            });
     });
 
     const addVideo = () => {
@@ -35,10 +33,7 @@
     <h1>Messages</h1>
     <ul>
         <!-- v-for: loop over een array in html -->
-        <li v-for="comment in comments"  >
-            {{ comment.user }}
-            <p>hallo</p>
-        </li>
+
     </ul>
 
     <!-- TWO WAY BINDING: docs: reactivity fundamentals-->
