@@ -31,6 +31,14 @@
         }, 1000);
     };
 
+    const previousVideo = () => { 
+        animation.value = 'animate__fadeOut';
+        setTimeout(() => {
+            src.value = videos.videos[0].video;
+            animation.value = 'animate__fadeIn';
+        }, 1000);
+    };
+
     /* TRY 1
     //import ref
     import { ref } from 'vue'
@@ -69,14 +77,19 @@
 </script>
 
 <template>
-  <div class="video">
-    <div class="controls">
-        <a @click.prevent="nextVideo" href="#" class="controls__next">🔽</a>
+    <div class="background__fix">
+        <div class="video background">
+            <div class="controls controls__next">
+                <a @click.prevent="nextVideo" href="#" >⬇</a>
+            </div>
+            <div class="controls controls__previous">
+                <a @click.prevent="previousVideo" href="#">⬆</a>
+            </div>
+            <video :src="src" controls autoplay :class="animation" class="animate__animated">
+                <!-- zorgt dat die uit een variabele kan halen?? v-bindsrc is :src-->
+            </video>
+        </div>
     </div>
-    <video :src="src" controls autoplay :class="animation" class="animate__animated">
-        <!-- zorgt dat die uit een variabele kan halen?? v-bindsrc is :src-->
-    </video>
-  </div>
 </template>
 
 <!-- scoped: enkel in dit bestand/ component van toepassing-->
@@ -84,15 +97,40 @@
     .video{
         position: relative;
     }
- .controls{
+    .controls{
         position: absolute;
-        top: 50%;
         right: 2em;
-        transform: translate(-50%, -50%);
+        transform: translate(-30%, -30%);
+        scale: 2;
         z-index: 1;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        text-decoration: none;
+    }
+
+    a{
+        text-decoration: none;
+    }
+
+    .controls__next{
+        top: 52%;
+    }
+
+    .controls__previous{
+        top: 48%;
+    }
+
+    .background {
+        background-color: darkgray;
+        background-size: cover;
+        text-align: center;
+        position: relative;
+    }
+
+    .background__fix{
+        width: 65%;
+        position: fixed
     }
 
 </style>
