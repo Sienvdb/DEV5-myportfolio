@@ -6,7 +6,7 @@ let username = ref("");
 let description = ref("");
 
 onMounted(() => {
-    const api_url = "http://127.0.0.1:5173/tiktok.json";
+    const api_url = "https://app.fakejson.com/q/ipsgR0e0?token=dpQ9m4it4XS-5oTmIu1YlQ";
     fetch(api_url)
         .then(res => res.json())
         .then(data => {
